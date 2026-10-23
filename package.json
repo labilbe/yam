@@ -1,0 +1,10 @@
+{
+  "name": "yam",
+  "version": "1.0.0",
+  "description": "Jeu de Yam's (cinq dés) jouable dans le navigateur",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node test/selfplay.mjs"
+  }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yam's</title>
+<meta name="description" content="Jeu de Yam's à cinq dés, jouable directement dans le navigateur.">
+<meta name="theme-color" content="#0d3b2e">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="barre">
+  <h1>Yam's</h1>
+  <div class="scores">
+    <div class="score" data-joueur="0">
+      <span class="score-nom" id="nom-0">Vous</span>
+      <span class="score-valeur" id="score-0">0</span>
+    </div>
+    <div class="score-sep">/</div>
+    <div class="score" data-joueur="1">
+      <span class="score-nom" id="nom-1">Ordinateur</span>
+      <span class="score-valeur" id="score-1">0</span>
+    </div>
+  </div>
+  <div class="infos">
+    <span id="info-tour">Tour 1 / 13</span>
+    <span id="info-joueur" class="pastille">À vous</span>
+  </div>
+  <button type="button" id="btn-regles" class="lien">Règles</button>
+</header>
+
+<main class="table">
+  <section class="feuille-zone">
+    <table class="feuille">
+      <thead>
+        <tr>
+          <th scope="col">Case</th>
+          <th scope="col" id="col-0">Vous</th>
+          <th scope="col" id="col-1">Ordinateur</th>
+        </tr>
+      </thead>
+      <tbody id="feuille-corps"></tbody>
+    </table>
+  </section>
+
+  <section class="piste">
+    <div class="des" id="des"></div>
+    <p class="consigne" id="consigne"></p>
+    <div class="piste-actions">
+      <button type="button" class="bouton principal" id="btn-lancer">Lancer les dés</button>
+    </div>
+  </section>
+</main>
+
+<section class="panneau panneau-large" id="panneau-fin" hidden>
+  <p class="panneau-titre" id="fin-titre"></p>
+  <table class="feuille feuille-fin" id="fin-feuille"></table>
+  <div class="panneau-actions">
+    <button type="button" class="bouton principal" id="btn-rejouer">Nouvelle partie</button>
+  </div>
+</section>
+
+<aside class="journal" id="journal" aria-live="polite"></aside>
+
+<dialog id="dlg-regles">
+  <h2>Règles appliquées</h2>
+  <ul>
+    <li>Cinq dés, treize tours. À chaque tour, un premier lancer obligatoire, puis jusqu'à
+      <strong>deux relances</strong> : on garde les dés que l'on veut en cliquant dessus.</li>
+    <li>Le tour se termine par l'inscription du résultat dans une case <strong>libre</strong> de sa
+      feuille — on peut inscrire dès le premier lancer, et il faut inscrire au troisième, quitte à
+      marquer zéro.</li>
+    <li><strong>Section haute</strong> — As, Deux, Trois, Quatre, Cinq, Six : le total des dés de la
+      face correspondante.</li>
+    <li><strong>Prime</strong> : 35 points si la section haute atteint 63 points, soit trois dés de
+      chaque face en moyenne.</li>
+    <li><strong>Brelan</strong> : trois dés identiques — total des cinq dés.</li>
+    <li><strong>Carré</strong> : quatre dés identiques — total des cinq dés.</li>
+    <li><strong>Full</strong> : un brelan et une paire — 25 points. Cinq dés identiques ne forment
+      pas un full.</li>
+    <li><strong>Petite suite</strong> : quatre dés qui se suivent — 30 points.</li>
+    <li><strong>Grande suite</strong> : cinq dés qui se suivent — 40 points.</li>
+    <li><strong>Yam's</strong> : cinq dés identiques — 50 points. Un second Yam's n'ouvre droit à
+      aucune prime supplémentaire : il s'inscrit comme n'importe quel autre lancer.</li>
+    <li><strong>Chance</strong> : le total des cinq dés, sans condition.</li>
+    <li>La partie s'achève quand les deux feuilles sont pleines ; le plus grand total l'emporte.</li>
+  </ul>
+  <button type="button" class="bouton" id="btn-fermer-regles">Fermer</button>
+</dialog>
+
+<script type="module" src="src/ui.js"></script>
+</body>
+</html>
